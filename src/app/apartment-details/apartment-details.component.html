@@ -1,0 +1,82 @@
+<div *ngIf="apartment" class="container mt-5">
+  <h3>Apartment Details:</h3>
+  <div class="card">
+    <div class="card-header bg-secondary text-white">
+      Apartment ID: {{ apartment.id }}
+    </div>
+    <div class="card-body">
+      <div class="row mb-2">
+        <div class="col-md-2 font-weight-bold">Numurs:</div>
+        <div class="col-md-10">{{ apartment.numurs }}</div>
+      </div>
+      <div class="row mb-2">
+        <div class="col-md-2 font-weight-bold">Stavs:</div>
+        <div class="col-md-10">{{ apartment.stavs }}</div>
+      </div>
+      <div class="row mb-2">
+        <div class="col-md-2 font-weight-bold">Istabu Skaits:</div>
+        <div class="col-md-10">{{ apartment.istabuSkaits }}</div>
+      </div>
+      <div class="row mb-2">
+        <div class="col-md-2 font-weight-bold">Iedzīvotāju Skaits:</div>
+        <div class="col-md-10">{{ apartment.iedzivotajuSkaits }}</div>
+      </div>
+      <div class="row mb-2">
+        <div class="col-md-2 font-weight-bold">Pilnā Platība:</div>
+        <div class="col-md-10">{{ apartment.pilnaPlatiba }}</div>
+      </div>
+      <div class="row mb-2">
+        <div class="col-md-2 font-weight-bold">Dzīvojamā Platība:</div>
+        <div class="col-md-10">{{ apartment.dzivojamaPlatiba }}</div>
+      </div>
+      <div>
+        <h3>Residents:</h3>
+        <div *ngFor="let resident of residents" class="mb-2">
+        <div class="card-header">
+          Resident ID: {{ resident.iedzivotajsId }}
+        </div>
+        <button type="button" class="btn btn-primary" (click)="showPopup = resident.iedzivotajsId">View Resident</button>
+        <app-popup *ngIf="showPopup == resident.iedzivotajsId" [residentId]="resident.iedzivotajsId" (closeRequest)="showPopup = null"></app-popup>
+      </div>
+    </div>
+  </div>
+</div>
+      
+
+  <div class="card mt-3">
+    <div class="card-header bg-secondary text-white">Update Apartment</div>
+    <div class="card-body">
+      <form [formGroup]="updateApartmentForm" (ngSubmit)="updateApartment()">
+        <div class="form-group">
+          <label for="numurs">Numurs</label>
+          <input type="text" class="form-control" id="numurs" formControlName="numurs">
+        </div>
+        <div class="form-group">
+          <label for="stavs">Stavs</label>
+          <input type="text" class="form-control" id="stavs" formControlName="stavs">
+        </div>
+        <div class="form-group">
+          <label for="istabuSkaits">Istabu Skaits</label>
+          <input type="text" class="form-control" id="istabuSkaits" formControlName="istabuSkaits">
+        </div>
+        <div class="form-group">
+          <label for="iedzivotajuSkaits">Iedzīvotāju Skaits</label>
+          <input type="text" class="form-control" id="iedzivotajuSkaits" formControlName="iedzivotajuSkaits">
+        </div>
+        <div class="form-group">
+          <label for="pilnaPlatiba">Pilnā Platība</label>
+          <input type="text" class="form-control" id="pilnaPlatiba" formControlName="pilnaPlatiba">
+        </div>
+        <div class="form-group">
+          <label for="dzivojamaPlatiba">Dzīvojamā Platība</label>
+          <input type="text" class="form-control" id="dzivojamaPlatiba" formControlName="dzivojamaPlatiba">
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="!updateApartmentForm.valid">Update</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="mt-3">
+    <button type="button" class="btn btn-primary" (click)="onBackClick()">Back to House List</button>
+  </div>
+</div>

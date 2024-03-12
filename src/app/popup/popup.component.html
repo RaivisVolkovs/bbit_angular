@@ -1,0 +1,52 @@
+<div class="popup-overlay" *ngIf="residents != null">
+    <div class="popup-content">
+      <h2>Resident Details</h2>
+      <div class="card">
+        <div class="card-body">
+          <ng-container>
+            <p>ID: {{ residents.id }}</p>
+            <p>Vārds un Uzvārds: {{ residents.vards }} {{ residents.uzvards }}</p>
+            <p>Personas Kods: {{ residents.personasKods }}</p>
+            <p>Dzimšanas Datums: {{ residents.dzimsanasDatums }}</p>
+            <p>Telefons: {{ residents.telefons }}</p>
+            <p>Email: {{ residents.email }}</p>
+          </ng-container>
+        </div>
+      </div>
+      <div class="card mt-3">
+        <div class="card-header">Update Resident</div>
+        <div class="card-body">
+          <form [formGroup]="updateResidentsForm" (ngSubmit)="updateResident()">
+            <div class="form-group">
+              <label>Vards</label>
+              <input type="text" class="form-control" id="vards" formControlName="vards">
+            </div>
+            <div class="form-group">
+              <label>Uzvards</label>
+              <input type="text" class="form-control" id="uzvards" formControlName="uzvards">
+            </div>
+            <div class="form-group">
+              <label>Personas Kods</label>
+              <input type="text" class="form-control" id="personasKods" formControlName="personasKods">
+            </div>
+            <div class="form-group">
+              <label>Dzimšanas Datums</label>
+              <input type="text" class="form-control" id="dzimsanasDatums" formControlName="dzimsanasDatums">
+            </div>
+            <div class="form-group">
+              <label>Telefons</label>
+              <input type="text" class="form-control" id="telefons" formControlName="telefons">
+            </div>
+            <div class="form-group">
+              <label>Email</label>
+              <input type="text" class="form-control" id="email" formControlName="email">
+            </div>
+            <div class="form-group text-center mt-3">
+              <button type="submit" class="btn btn-primary mx-2" [disabled]="!updateResidentsForm.valid">Update</button>
+              <button class="btn btn-secondary mx-2" (click)="close()">Close</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,91 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-15">
+      <div class="card" *ngIf="house != null">
+        <div class="card-header bg-secondary text-white">
+          House ID: {{ house.id }}
+        </div>
+
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-2 font-weight-bold">Numurs:</div>
+            <div class="col-md-10">{{ house.numurs }}</div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-2 font-weight-bold">Iela:</div>
+            <div class="col-md-10">{{ house.iela }}</div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-2 font-weight-bold">Pilsēta:</div>
+            <div class="col-md-10">{{ house.pilseta }}</div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-2 font-weight-bold">Valsts:</div>
+            <div class="col-md-10">{{ house.valsts }}</div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-2 font-weight-bold">Pasta Indekss:</div>
+            <div class="col-md-10">{{ house.pastaIndekss }}</div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="apartments != null">
+        <h3 class="mt-3">Apartment Details:</h3>
+        <div class="card" *ngFor="let apt of apartments">
+          <div class="card-header bg-secondary text-white">
+            Apartment ID: {{ apt.id }}
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-2 font-weight-bold">Numurs:</div>
+              <div class="col-md-10">{{ apt.numurs }}</div>
+            </div>
+            <div class="row">
+              <div class="col-md-2 font-weight-bold">Stavs:</div>
+              <div class="col-md-10">{{ apt.stavs }}</div>
+            </div>
+            <a class="btn btn-primary" [routerLink]="['/apartment', apt.id]">View</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card mt-3">
+        <div class="card-header bg-secondary text-white">Update House</div>
+        <div class="card-body">
+          <form [formGroup]="updateHouseForm" (ngSubmit)="updateHouse()">
+            <div class="form-group">
+              <label for="numurs">Numurs</label>
+              <input type="text" class="form-control" id="numurs" formControlName="numurs">
+            </div>
+            <div class="form-group">
+              <label for="iela">Iela</label>
+              <input type="text" class="form-control" id="iela" formControlName="iela">
+            </div>
+            <div class="form-group">
+              <label for="pilseta">Pilsēta</label>
+              <input type="text" class="form-control" id="pilseta" formControlName="pilseta">
+            </div>
+            <div class="form-group">
+              <label for="valsts">Valsts</label>
+              <input type="text" class="form-control" id="valsts" formControlName="valsts">
+            </div>
+            <div class="form-group">
+              <label for="pastaIndekss">Pasta Indekss</label>
+              <input type="text" class="form-control" id="pastaIndekss" formControlName="pastaIndekss">
+            </div>
+            <button type="submit" class="btn btn-primary" [disabled]="!updateHouseForm.valid">Update</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="mt-2">
+        <button type="button" class="btn btn-primary" (click)="onBackClick()">Back To House List</button>
+      </div>
+    </div>
+  </div>
+</div>
